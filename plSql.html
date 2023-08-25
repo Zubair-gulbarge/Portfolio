@@ -1,0 +1,129 @@
+PL/SQL (Procedural Language/Structured Query Language) is a programming language extension for SQL used in Oracle databases to write stored procedures, functions, triggers, and more. Here are some common PL/SQL commands and constructs:
+
+1. **DECLARE:** Used to declare variables, constants, and types.
+
+```plsql
+DECLARE
+    emp_id NUMBER := 101;
+    emp_name VARCHAR2(50) := 'John Doe';
+BEGIN
+    -- Your PL/SQL code here
+END;
+/
+```
+
+2. **BEGIN-END:** Encloses a block of PL/SQL code.
+
+```plsql
+BEGIN
+    -- Your PL/SQL code here
+END;
+/
+```
+
+3. **IF-THEN-ELSE:** Conditional statement.
+
+```plsql
+IF condition THEN
+    -- Code to execute if condition is true
+ELSIF another_condition THEN
+    -- Code to execute if another_condition is true
+ELSE
+    -- Code to execute if no condition is true
+END IF;
+```
+
+4. **CASE:** Switch statement.
+
+```plsql
+CASE variable
+    WHEN value1 THEN
+        -- Code for value1
+    WHEN value2 THEN
+        -- Code for value2
+    ELSE
+        -- Default code
+END CASE;
+```
+
+5. **FOR LOOP:** Loop through a range of values.
+
+```plsql
+FOR i IN 1..10 LOOP
+    -- Code to execute for each iteration
+END LOOP;
+```
+
+6. **WHILE LOOP:** Loop while a condition is true.
+
+```plsql
+WHILE condition LOOP
+    -- Code to execute while condition is true
+END LOOP;
+```
+
+7. **CURSOR:** Used to manage a result set from a SELECT query.
+
+```plsql
+DECLARE
+    CURSOR emp_cur IS
+        SELECT employee_name FROM employees;
+BEGIN
+    FOR emp_rec IN emp_cur LOOP
+        DBMS_OUTPUT.PUT_LINE(emp_rec.employee_name);
+    END LOOP;
+END;
+/
+```
+
+8. **EXCEPTION:** Handle exceptions or errors.
+
+```plsql
+BEGIN
+    -- Your PL/SQL code here
+EXCEPTION
+    WHEN exception_name THEN
+        -- Code to handle the specific exception
+    WHEN OTHERS THEN
+        -- Code to handle other exceptions
+END;
+/
+```
+
+9. **FUNCTION:** Create a reusable function.
+
+```plsql
+CREATE OR REPLACE FUNCTION calculate_salary(salary NUMBER, bonus NUMBER)
+RETURN NUMBER IS
+    total_salary NUMBER;
+BEGIN
+    total_salary := salary + bonus;
+    RETURN total_salary;
+END;
+/
+```
+
+10. **PROCEDURE:** Create a reusable procedure.
+
+```plsql
+CREATE OR REPLACE PROCEDURE update_employee_name(emp_id NUMBER, new_name VARCHAR2) IS
+BEGIN
+    UPDATE employees SET employee_name = new_name WHERE employee_id = emp_id;
+    COMMIT;
+END;
+/
+```
+
+11. **TRIGGER:** Create a trigger that automatically executes when certain events occur.
+
+```plsql
+CREATE OR REPLACE TRIGGER update_salary
+BEFORE INSERT OR UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    :NEW.salary := :NEW.salary * 1.1; -- Increase salary by 10%
+END;
+/
+```
+
+These are just a few examples of the PL/SQL commands and constructs you can use. PL/SQL offers a wide range of features for database programming and automation within Oracle databases.
